@@ -16,7 +16,7 @@ class equipo_controller {
 
     public function index()
     {
-        $tittle = "follow-" . $_SESSION["name"];
+        $tittle = "follow-" . $_SESSION["nombre"];//$_SESSION["name"];
         $data   = $this->equipo->get();
         $ip     = getRealIP();
         if ($_SESSION["rol"] == '1') {
@@ -31,6 +31,30 @@ class equipo_controller {
         
         $this->form_agregar();
 
+    }
+    public function agregar()
+    {
+        //$tittle = "follow-" . $_POST["nombre"];//$_SESSION["name"];
+        //echo '<div>' . $tittle . '</div>';
+        $this->equipo->agrega(
+$_POST["nombre"],
+$_POST["descripcion"],
+$_POST["activo"],
+$_POST["imagenPath"],
+$_POST["codigo"],
+$_POST["peso"],
+$_POST["consumoWatts"],
+$_POST["dimensionAlto"],
+$_POST["dimensionAncho"],
+$_POST["dimensionProfundidad"],
+$_POST["serial"],
+$_POST["garantia"],
+$_POST["manuales"],
+$_POST["proteccion"],
+$_POST["categoriaId"],
+$_POST["marcaId"]
+                );
+        //$this->index();
     }
     public function form_agregar()
     {
