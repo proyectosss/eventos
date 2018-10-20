@@ -1,4 +1,4 @@
-<div class="container-fluid contenido">
+<div style="background-color: " class="container-fluid contenido">
     <div class="row">
         <div id="divDelControlador">
             <h1>Bienvidido administrador de sistema!!</h1><br/>        

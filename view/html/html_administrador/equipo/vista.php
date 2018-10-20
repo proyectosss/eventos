@@ -1,4 +1,18 @@
 <div class="container-fluid contenido">
+    <script type="text/javascript">
+    </script>
+    <div id="equipoAgregaModal" class="modal fade" role="dialog"> <!--class="container">-->
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div id="contenedorModal">
+                    <h1>sin contenido</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <button onclick="cargaYMuestraModal('equipo', 0 )" type="button" class="btn btn-info btn-lg">Agregar Equipo</button>
+    </div>
     <div class="row">
         <h3 class="text-center"> Equipos </h3>
     </div>
@@ -32,7 +46,7 @@
             </thead>
             <tbody>
                 <?php foreach ($data as $item): ?>
-                    <tr>
+                    <tr ondblclick="cargaYMuestraModal('equipo', <?php echo $item['id']; ?> )">
                         <td><?php echo $item['id']; ?></td>
                         <td><?php echo $item['nombre']; ?></td>
                         <td><?php echo $item['descripcion']; ?></td>
@@ -59,5 +73,4 @@
             </tbody>
         </table>
     </div>
-</div>
 </div>

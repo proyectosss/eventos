@@ -5,23 +5,23 @@
  *
  * @author juan
  */
-class equipo_model {
+class cliente_model {
 
 //put your code here
     private $DB;
-    private $equipo;
+    private $cliente;
 
     public function __construct() {
         $this->DB = conexion::getConnection();
-        $this->equipos = array();
+        $this->cliente = array();
     }
 
     public function get() {
         $query = $this->DB->query("select * from tblEquipo");
         while ($fila = $query->fetch_assoc()) {
-            $this->equipos[] = $fila;
+            $this->cliente[] = $fila;
         }
-        return $this->equipos;
+        return $this->cliente;
     }
 
     public function getId($id) {

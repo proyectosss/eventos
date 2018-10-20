@@ -6,27 +6,27 @@
  * @author juan
  */
 
-require_once 'model/equipo_model.php';
-class equipo_controller {
+require_once 'model/cliente_model.php';
+class cliente_controller {
     private $sesion;
     public function __construct()
     {
-        $this->equipo = new equipo_model();
+        $this->cliente = new cliente_model();
     }
 
     public function index()
     {
         $tittle = $_SESSION["name"];
-        $data   = $this->equipo->get();
+        $data   = $this->cliente->get();
         $ip     = getRealIP();
         if ($_SESSION["rol"] == '1') {
-            require_once HTML_DIR_GERENTE . 'equipo/vista.php';
+            require_once HTML_DIR_GERENTE . 'cliente/vista.php';
         } else if ($_SESSION["rol"] == '2'){
-            require_once HTML_DIR_ADMIN . 'equipo/vista.php';
+            require_once HTML_DIR_ADMIN . 'cliente/vista.php';
         }else if ($_SESSION["rol"] == '3'){
-            require_once HTML_DIR_DIRECTOR . 'equipo/vista.php';
+            require_once HTML_DIR_DIRECTOR . 'cliente/vista.php';
         }else if ($_SESSION["rol"] == '4'){
-            require_once HTML_DIR_VENDEDOR . 'equipo/vista.php';
+            require_once HTML_DIR_VENDEDOR . 'cliente/vista.php';
         }
         
         //$this->form_agregar();
@@ -40,7 +40,7 @@ class equipo_controller {
         {
             $id = $_POST['id'];
             if($id>0){
-            $res = $this->equipo->actualiza($id, $_POST["nombre"], $_POST["descripcion"], $_POST["activo"], $_POST["imagenPath"],
+            $res = $this->cliente->actualiza($id, $_POST["nombre"], $_POST["descripcion"], $_POST["activo"], $_POST["imagenPath"],
                 $_POST["codigo"], $_POST["peso"], $_POST["consumoWatts"], $_POST["dimensionAlto"],
                 $_POST["dimensionAncho"], $_POST["dimensionProfundidad"], $_POST["serial"], $_POST["garantia"],
                 $_POST["manuales"], $_POST["proteccion"], $_POST["categoriaId"], $_POST["marcaId"]);
@@ -53,7 +53,7 @@ class equipo_controller {
             echo json_encode($arr);
 
         }else{
-            $res = $this->equipo->agrega($_POST["nombre"], $_POST["descripcion"], $_POST["activo"], $_POST["imagenPath"],
+            $res = $this->cliente->agrega($_POST["nombre"], $_POST["descripcion"], $_POST["activo"], $_POST["imagenPath"],
                 $_POST["codigo"], $_POST["peso"], $_POST["consumoWatts"], $_POST["dimensionAlto"],
                 $_POST["dimensionAncho"], $_POST["dimensionProfundidad"], $_POST["serial"], $_POST["garantia"],
                 $_POST["manuales"], $_POST["proteccion"], $_POST["categoriaId"], $_POST["marcaId"]);            
@@ -74,7 +74,7 @@ class equipo_controller {
         $id = $_POST["id"];
         if($id>0)
         {
-            $item = $this->equipo->getId($_POST["id"]);
+            $item = $this->cliente->getId($_POST["id"]);
         }
         if ($_SESSION["rol"] == '1') {
             require_once HTML_DIR_GERENTE . 'equipo/form_agregar.php';
