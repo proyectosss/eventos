@@ -88,8 +88,7 @@
                       <input type="checkbox" class="form-check-input" id="exampleCheck1">
                       <label class="form-check-label" for="exampleCheck1">Check me out</label>
                     </div>-->
-                    <div onclick="postDatos('equipo')" class="btn btn-primary">agregar</div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <div onclick="postDatos('equipo')" class="btn btn-primary font background-color" id = "button"><span class="glyphicon glyphicon-save" aria-hidden="true"></span>Guardar</div>
                 </form>
 
                 <!--</div>
