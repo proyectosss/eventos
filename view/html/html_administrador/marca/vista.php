@@ -10,12 +10,10 @@ class vista extends vista_base {
 
 }
 
-$entidad = 'cliente';
-$columnas = ['id', 'Nombre', 'Apellido', 'Direccion', 'Correo',
-    'Telefono', 'identificacion'];
-$titulos = ['Id', 'Nombre', 'Apellido', 'Direccion', 'Correo', 'Telefono',
-    'Identificacion','Opciones'];
-$tipos = ['S', 'S', 'S', 'S', 'S', 'S','S'];
+$entidad = 'marca';
+$columnas = ['id', 'nombre', 'descripcion'];
+$titulos = ['Id', 'Nombre', 'Descripcion','Funciones'];
+$tipos = ['S', 'S', 'S'];
 
 $vista = new vista($data, $entidad, $columnas, $titulos, $tipos, $inicio, $cuantos);
 

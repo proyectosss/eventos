@@ -5,27 +5,26 @@
  *
  * @author juan
  */
-class equipo_model {
+class marca_model {
 
 //put your code here
     private $DB;
-    private $equipo;
+    private $marca;
     
-    private static $nombreEntidad = "equipo";
+    private static $nombreEntidad = "marca";
 
     public function __construct() {
         $this->DB = conexion::getConnection();
-        $this->equipos = array();
+        $this->marcas = array();
     }
 
     public function get($inicio=0,$cuantos=10) {
         $queryString = "CALL sp_consultar_" . self::$nombreEntidad . "s($inicio,$cuantos)";
-        echo $queryString;
         $query = $this->DB->query($queryString);
         while ($fila = $query->fetch_assoc()) {
-            $this->equipos[] = $fila;
+            $this->marcas[] = $fila;
         }
-        return $this->equipos;
+        return $this->marcas;
     }
 
     public function getId($id) {

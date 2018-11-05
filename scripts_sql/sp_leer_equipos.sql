@@ -5,9 +5,9 @@
 
 DELIMITER $$
 
-DROP PROCEDURE IF EXISTS sp_leer_equipos $$
+DROP PROCEDURE IF EXISTS sp_consultar_equipos $$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_leer_equipos` (
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_consultar_equipos` (
 	IN in_fila_inicio int(11),
         IN in_cuantas_filas int(11))  NO SQL
 BEGIN

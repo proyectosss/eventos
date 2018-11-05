@@ -5,17 +5,17 @@
  *
  * @author juan
  */
-class equipo_model {
+class empleado_model {
 
 //put your code here
     private $DB;
-    private $equipo;
+    private $empleado;
     
-    private static $nombreEntidad = "equipo";
+    private static $nombreEntidad = "empleado";
 
     public function __construct() {
         $this->DB = conexion::getConnection();
-        $this->equipos = array();
+        $this->empleados = array();
     }
 
     public function get($inicio=0,$cuantos=10) {
@@ -23,9 +23,9 @@ class equipo_model {
         echo $queryString;
         $query = $this->DB->query($queryString);
         while ($fila = $query->fetch_assoc()) {
-            $this->equipos[] = $fila;
+            $this->empleados[] = $fila;
         }
-        return $this->equipos;
+        return $this->empleados;
     }
 
     public function getId($id) {
@@ -37,12 +37,9 @@ class equipo_model {
         return NULL;
     }
 
-    public function agrega($nombre, $descripcion, $activo, $imagenPath, $codigo, $peso, $consumoWatts, $dimensionAlto, $dimensionAncho, $dimensionProfundidad, $serial, $garantia, $manuales, $proteccion, $categoriaId, $marcaId) {
+    public function agrega($Cedula, $Nombre, $Apellido, $Cargo, $Correo, $Telefono, $Direccion, $Ciudad) {
         $queryString = "CALL sp_agregar_" . self::$nombreEntidad . "("
-                . "  '$nombre', '$descripcion', $activo, '$imagenPath', '$codigo', $peso"
-                . ", $consumoWatts, $dimensionAlto, $dimensionAncho, $dimensionProfundidad"
-                . ", '$serial', '$garantia', '$manuales', '$proteccion', $categoriaId"
-                . ", $marcaId)";
+                . " $Cedula '$Nombre', '$Apellido', '$Cargo', '$Correo', $Telefono, '$Direccion', '$Ciudad')";
         $query = $this->DB->query($queryString);
         if ($fila = $query->fetch_assoc()) {
             return $fila['id'];
@@ -50,13 +47,10 @@ class equipo_model {
         return NULL;
     }
   
-    public function actualiza($id, $nombre, $descripcion, $activo, $imagenPath, $codigo, $peso, $consumoWatts, $dimensionAlto, $dimensionAncho, $dimensionProfundidad, $serial, $garantia, $manuales, $proteccion, $categoriaId, $marcaId)
+    public function actualiza($id,$Cedula, $Nombre, $Apellido, $Cargo, $Correo, $Telefono, $Direccion, $Ciudad)
     {
         $queryString = "CALL sp_actualizar_" . self::$nombreEntidad . "("
-                . "  $id, '$nombre', '$descripcion', $activo, '$imagenPath', '$codigo', $peso"
-                . ", $consumoWatts, $dimensionAlto, $dimensionAncho, $dimensionProfundidad"
-                . ", '$serial', '$garantia', '$manuales', '$proteccion', $categoriaId"
-                . ", $marcaId)";
+        . " $Cedula '$Nombre', '$Apellido', '$Cargo', '$Correo', $Telefono, '$Direccion', '$Ciudad')";
 //        return mysqli_query($this->DB, $query);// or die('error \n' . mysqli_error($this->DB));
         $query = $this->DB->query($queryString);
         if ($fila = $query->fetch_assoc()) {

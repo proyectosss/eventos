@@ -11,7 +11,7 @@ class equipo_model {
     private $DB;
     private $equipo;
     
-    private static $nombreEntidad = "equipo";
+    private static $nombreEntidad = "marca";
 
     public function __construct() {
         $this->DB = conexion::getConnection();
@@ -20,7 +20,6 @@ class equipo_model {
 
     public function get($inicio=0,$cuantos=10) {
         $queryString = "CALL sp_consultar_" . self::$nombreEntidad . "s($inicio,$cuantos)";
-        echo $queryString;
         $query = $this->DB->query($queryString);
         while ($fila = $query->fetch_assoc()) {
             $this->equipos[] = $fila;
@@ -29,7 +28,7 @@ class equipo_model {
     }
 
     public function getId($id) {
-        $queryString = "CALL sp_consultar_" . self::$nombreEntidad . "($id)";
+        $queryString = "CALL sp_leer_" . self::$nombreEntidad . "($id)";
         $query = $this->DB->query($queryString);
         if ($fila = $query->fetch_assoc()) {
             return $fila;
