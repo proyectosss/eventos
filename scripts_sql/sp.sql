@@ -11,7 +11,7 @@ SET @responsable=responsable;
 SET @descripcion=descripcion;
 SET @imagenPath=imagenPath;
 SET @Id=Id;
-UPDATE tblcategoria SET nombre=@nombre, responsable=@responsable, descripcion=@descripcion, imagenPath=@imagenPath, Id=@Id WHERE id=@Id;
+UPDATE tblCategoria SET nombre=@nombre, responsable=@responsable, descripcion=@descripcion, imagenPath=@imagenPath, Id=@Id WHERE id=@Id;
 END$$
 
 DROP PROCEDURE IF EXISTS `sp_actualizar_cliente`$$
@@ -24,7 +24,7 @@ SET @Correo=Correo;
 SET @Telefono=Telefono;
 SET @Cedula=Cedula;
 SET @Id=Id;
-UPDATE tblcliente set Nombre=@Nombre, Apellido=@Apellido, Direccion=@Direccion, Correo=@Correo, Telefono=@Telefono, Id=@Id
+UPDATE tblCliente set Nombre=@Nombre, Apellido=@Apellido, Direccion=@Direccion, Correo=@Correo, Telefono=@Telefono, Id=@Id
 WHERE id=@Id;
 END$$
 
@@ -39,7 +39,7 @@ SET @Correo=Correo;
 SET @Telefono=Telefono;
 SET @Direccion=Direccion;
 SET @Ciudad=Ciudad;
-UPDATE tblempleado set Nombre=@Nombre, Apellido=@Apellido, Cargo=@Cargo, Correo=@Correo, Telefono=@Telefono, Direccion=@Direccion, Ciudad=@Ciudad
+UPDATE tblEmpleado set Nombre=@Nombre, Apellido=@Apellido, Cargo=@Cargo, Correo=@Correo, Telefono=@Telefono, Direccion=@Direccion, Ciudad=@Ciudad
 WHERE id=@Cedula;
 END$$
 
@@ -96,7 +96,7 @@ SET @Fecha=Fecha;
 SET @Transportador=Transportador;
 SET @HoraAproximadaCargue=HoraAproximadaCargue;
 SET @HoraAproximadaDescargue=HoraAproximadaDescargue;
-UPDATE tblevento set Encargado=@Encargado, Lugar=@Lugar, Fecha=@Fecha, Transportado=@Transportador, HoraAproximadaCargue=@HoraAproximadaCargue, HoraAproximadaDescargue=@HoraAproximadaDescargue WHERE id=@Evento;
+UPDATE tblEvento set Encargado=@Encargado, Lugar=@Lugar, Fecha=@Fecha, Transportado=@Transportador, HoraAproximadaCargue=@HoraAproximadaCargue, HoraAproximadaDescargue=@HoraAproximadaDescargue WHERE id=@Evento;
 END$$
 
 DROP PROCEDURE IF EXISTS `sp_actualizar_marca`$$
@@ -106,7 +106,7 @@ SET @nombre=nombre;
 SET @descripcion=descripcion;
 SET @imagenPath=imagenPath;
 SET @Id=Id;
-UPDATE tblmarca set nombre=@nombre, descripcion=@descripcion, imagenPath=imagenPath, Id=@Id WHERE id=@Id;
+UPDATE tblMarca set nombre=@nombre, descripcion=@descripcion, imagenPath=imagenPath, Id=@Id WHERE id=@Id;
 END$$
 
 DROP PROCEDURE IF EXISTS `sp_agregar_categoria`$$
@@ -115,7 +115,7 @@ BEGIN
 SET @nombre=nombre;
 SET @responsable=responsable;
 SET @descripcion=descripcion;
-INSERT INTO tblcategoria(id,nombre,responsable,descripcion) VALUES (null,@nombre,@responsable,@descripcion);
+INSERT INTO tblCategoria(id,nombre,responsable,descripcion) VALUES (null,@nombre,@responsable,@descripcion);
 END$$
 
 DROP PROCEDURE IF EXISTS `sp_agregar_cliente`$$
@@ -127,7 +127,7 @@ SET @Direccion = Direccion;
 SET @Correo = Correo;
 SET @Telefono = Telefono;
 SET @identificacion = identificacion;
-INSERT INTO tblcliente (id,Nombre, Apellido, Direccion, Correo, Telefono, identificacion) VALUES(null,@Nombre, @Apellido, @Direccion, @Correo, @Telefono, @identificacion);
+INSERT INTO tblCliente (id,Nombre, Apellido, Direccion, Correo, Telefono, identificacion) VALUES(null,@Nombre, @Apellido, @Direccion, @Correo, @Telefono, @identificacion);
 END$$
 
 DROP PROCEDURE IF EXISTS `sp_agregar_empleado`$$
@@ -141,7 +141,7 @@ SET @Correo=Correo;
 SET @Telefono=Telefono;
 SET @Direccion=Direccion;
 SET @Ciudad=Ciudad;
-INSERT INTO tblempleado(id, Cedula, Nombre, Apellido, Cargo, Correo, Telefono, Direccion, Ciudad) VALUES(null,@Cedula, @Nombre, @Apellido, @Cargo, @Correo, @Telefono, @Direccion, @Ciudad);
+INSERT INTO tblEmpleado(id, Cedula, Nombre, Apellido, Cargo, Correo, Telefono, Direccion, Ciudad) VALUES(null,@Cedula, @Nombre, @Apellido, @Cargo, @Correo, @Telefono, @Direccion, @Ciudad);
 END$$
 
 DROP PROCEDURE IF EXISTS `sp_agregar_equipo`$$
@@ -274,7 +274,7 @@ SET @Fecha = Fecha;
 SET @Transprotador = Transprotador;
 SET @HoraAproximadaCargue = HoraAproximadaCargue;
 SET @HoraAproximadaDescargue = HoraAproximadaDescargue;
-INSERT INTO tblevento(id, Evento, Encargado, Lugar, Fecha, Transprotador, HoraAproximadaCargue, HoraAproximadaDescargue) VALUES (null, @Evento, @Encargado, @Lugar, @Fecha, @Transprotador, @HoraAproximadaCargue, @HoraAproximadaDescargue);
+INSERT INTO tblEvento(id, Evento, Encargado, Lugar, Fecha, Transprotador, HoraAproximadaCargue, HoraAproximadaDescargue) VALUES (null, @Evento, @Encargado, @Lugar, @Fecha, @Transprotador, @HoraAproximadaCargue, @HoraAproximadaDescargue);
 END$$
 
 DROP PROCEDURE IF EXISTS `sp_agregar_marca`$$
@@ -282,7 +282,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_agregar_marca` (IN `nombre` VARC
 BEGIN
 SET @nombre=nombre;
 SET @descripcion=descripcion;
-INSERT into tblmarca (nombre,descripcion) VALUES (@nombre,@descripcion);
+INSERT into tblMarca (nombre,descripcion) VALUES (@nombre,@descripcion);
 SELECT LAST_INSERT_ID() AS id;
 END$$
 
@@ -290,7 +290,7 @@ DROP PROCEDURE IF EXISTS `sp_consultar_categoria`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_consultar_categoria` (IN `Id` INT)  NO SQL
 BEGIN
 SET @Id=Id;
-SELECT nombre,responsable,imagenPath FROM tblcategoria WHERE id=@Id;
+SELECT nombre,responsable,imagenPath FROM tblCategoria WHERE id=@Id;
 END$$
 
 DROP PROCEDURE IF EXISTS `sp_consultar_categorias`$$
@@ -302,7 +302,7 @@ SELECT
 `responsable`,
 `descripcion`,
 `imagenPath`
-FROM tblcategoria
+FROM tblCategoria
 LIMIT in_fila_inicio,in_cuantas_filas;
 END$$
 
@@ -310,7 +310,7 @@ DROP PROCEDURE IF EXISTS `sp_consultar_cliente`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_consultar_cliente` (IN `Id` INT(11))  NO SQL
 BEGIN
 SET @Id=Id;
-SELECT Nombre as Nombre, Apellido as Apellido, Direccion as Direccion, Correo as Correo, Telefono as Telefono, Identificacion as Identificacion FROM tblcliente WHERE id=@Id;
+SELECT Nombre as Nombre, Apellido as Apellido, Direccion as Direccion, Correo as Correo, Telefono as Telefono, Identificacion as Identificacion FROM tblCliente WHERE id=@Id;
 END$$
 
 DROP PROCEDURE IF EXISTS `sp_consultar_clientes`$$
@@ -324,21 +324,21 @@ SELECT
 `Correo`,
 `Telefono`,
 `identificacion`
-FROM tblcliente LIMIT in_fila_inicio,in_cuantas_filas;
+FROM tblCliente LIMIT in_fila_inicio,in_cuantas_filas;
 END$$
 
 DROP PROCEDURE IF EXISTS `sp_consultar_empleado`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_consultar_empleado` (IN `Id` INT(11))  NO SQL
 BEGIN
 SET Id=@Id;
-SELECT Cedula as Cedula, Nombre as Nombre, Apellido as Apellido, Cargo as Cargo, Correo as Correo, Telefono as Telefono, Direccion as Direccion, Ciudad as Ciudad FROM tblempleado WHERE id=@Id;
+SELECT Cedula as Cedula, Nombre as Nombre, Apellido as Apellido, Cargo as Cargo, Correo as Correo, Telefono as Telefono, Direccion as Direccion, Ciudad as Ciudad FROM tblEmpleado WHERE id=@Id;
 END$$
 
 DROP PROCEDURE IF EXISTS `sp_consultar_empleados`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_consultar_empleados` (IN `in_fila_inicio` INT(11), IN `in_cuantas_filas` INT(11))  NO SQL
 BEGIN
 SELECT
-`id`,`Cedula`,`Nombre`,`Apellido`,`Cargo`,`Correo`,`Telefono`,`Direccion`,`Ciudad` FROM tblempleado LIMIT in_fila_inicio,in_cuantas_filas;
+`id`,`Cedula`,`Nombre`,`Apellido`,`Cargo`,`Correo`,`Telefono`,`Direccion`,`Ciudad` FROM tblEmpleado LIMIT in_fila_inicio,in_cuantas_filas;
 END$$
 
 DROP PROCEDURE IF EXISTS `sp_consultar_equipo`$$
@@ -396,7 +396,7 @@ DROP PROCEDURE IF EXISTS `sp_consultar_evento`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_consultar_evento` (IN `Id` INT(11))  NO SQL
 BEGIN 
 SET @Id=Id;
-SELECT Evento as Evento, Encargado as Encargado, Lugar as Lugar, Fecha as Fecha, Transportador as Transportador, HoraAproximadaCarga as HoraAproximadaCarga, HoraAproximadaDescargue as HoraAproximadaDescargue FROM tblevento WHERE id=@Id;
+SELECT Evento as Evento, Encargado as Encargado, Lugar as Lugar, Fecha as Fecha, Transportador as Transportador, HoraAproximadaCarga as HoraAproximadaCarga, HoraAproximadaDescargue as HoraAproximadaDescargue FROM tblEvento WHERE id=@Id;
 END$$
 
 DROP PROCEDURE IF EXISTS `sp_consultar_marca`$$
@@ -420,28 +420,28 @@ END$$
 DROP PROCEDURE IF EXISTS `sp_eliminar_categoria`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_eliminar_categoria` (IN `Id` INT(11))  NO SQL
 BEGIN
-DELETE FROM tblcategoria WHERE id;
+DELETE FROM tblCategoria WHERE id;
 END$$
 
 DROP PROCEDURE IF EXISTS `sp_eliminar_cliente`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_eliminar_cliente` (IN `id` INT(11))  NO SQL
-DELETE FROM tblcliente WHERE id$$
+DELETE FROM tblCliente WHERE id$$
 
 DROP PROCEDURE IF EXISTS `sp_eliminar_empleado`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_eliminar_empleado` (IN `id` INT(11))  NO SQL
-DELETE FROM tblempleado WHERE id$$
+DELETE FROM tblEmpleado WHERE id$$
 
 DROP PROCEDURE IF EXISTS `sp_eliminar_equipo`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_eliminar_equipo` (IN `id` INT(11))  NO SQL
-DELETE FROM tblequipo WHERE id$$
+DELETE FROM tblEquipo WHERE id$$
 
 DROP PROCEDURE IF EXISTS `sp_eliminar_evento`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_eliminar_evento` (IN `id` INT(11))  NO SQL
-DELETE FROM tblevento WHERE id$$
+DELETE FROM tblEvento WHERE id$$
 
 DROP PROCEDURE IF EXISTS `sp_eliminar_marca`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_eliminar_marca` (IN `id` INT(11))  NO SQL
-DELETE FROM tblmarca WHERE id$$
+DELETE FROM tblMarca WHERE id$$
 
 DROP PROCEDURE IF EXISTS `sp_igreso_usuario`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_igreso_usuario` (IN `documento` INT, IN `nombre` VARCHAR(900), IN `apellido` VARCHAR(900), IN `telefono` INT, IN `celular` BIGINT, IN `email` VARCHAR(900), IN `passwordu` VARCHAR(900), IN `estado` VARCHAR(200), IN `fecha` DATETIME, IN `role` VARCHAR(900))  NO SQL
@@ -476,8 +476,8 @@ END$$
 
 DELIMITER ;
 
-DROP TABLE IF EXISTS tblequipoxevento;
-CREATE TABLE tblequipoxevento (
+DROP TABLE IF EXISTS tblEquipoxevento;
+CREATE TABLE tblEquipoxevento (
   equipoId int(11) NOT NULL,
   eventoId int(11) NOT NULL,
   creadoPor char(32) DEFAULT NULL,
@@ -486,8 +486,8 @@ CREATE TABLE tblequipoxevento (
   actualizadoEn datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-DROP TABLE IF EXISTS tblevento;
-CREATE TABLE tblevento (
+DROP TABLE IF EXISTS tblEvento;
+CREATE TABLE tblEvento (
   id int(11) NOT NULL,
   Evento varchar(11) NOT NULL,
   Encargado varchar(11) NOT NULL,
@@ -498,7 +498,7 @@ CREATE TABLE tblevento (
   HoraAproximadaDescargue time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-DROP TABLE IF EXISTS tbleventoxcliente;
+DROP TABLE IF EXISTS tblventoxcliente;
 CREATE TABLE tbleventoxcliente (
   id int(11) NOT NULL,
   eventoId int(11) NOT NULL,
