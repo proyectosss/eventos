@@ -118,6 +118,12 @@ SET @descripcion=descripcion;
 INSERT INTO tblCategoria(id,nombre,responsable,descripcion) VALUES (null,@nombre,@responsable,@descripcion);
 END$$
 
+alter table tblCliente modify Nombre varchar(20) $$
+alter table tblCliente modify Apellido varchar(20) $$
+alter table tblCliente modify Direccion varchar(30) $$
+alter table tblCliente modify Correo varchar(40) $$
+alter table tblCliente modify Telefono varchar(20) $$
+
 DROP PROCEDURE IF EXISTS `sp_agregar_cliente`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_agregar_cliente` (IN `Nombre` VARCHAR(15), IN `Apellido` VARCHAR(30), IN `Direccion` VARCHAR(30), IN `Correo` VARCHAR(40), IN `Telefono` INT(20), IN `identificacion` VARCHAR(15))  NO SQL
 BEGIN
@@ -127,11 +133,13 @@ SET @Direccion = Direccion;
 SET @Correo = Correo;
 SET @Telefono = Telefono;
 SET @identificacion = identificacion;
-INSERT INTO tblCliente (id,Nombre, Apellido, Direccion, Correo, Telefono, identificacion) VALUES(null,@Nombre, @Apellido, @Direccion, @Correo, @Telefono, @identificacion);
+INSERT INTO tblCliente (Nombre, Apellido, Direccion, Correo, Telefono, identificacion) VALUES(@Nombre, @Apellido, @Direccion, @Correo, @Telefono, @identificacion);
 END$$
+-- CALL sp_agregar_cliente('Nombre Cliente', 'Apellido Cliente', 'Direccion Cliente', 'correo@servidor.com','6669999','71000000') $$
 
+alter table tblEmpleado modify Cedula varchar(20) $$
 DROP PROCEDURE IF EXISTS `sp_agregar_empleado`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_agregar_empleado` (IN `Cedula` INT(100), IN `Nombre` VARCHAR(100), IN `Apellido` VARCHAR(100), IN `Cargo` VARCHAR(100), IN `Correo` VARCHAR(100), IN `Telefono` VARCHAR(100), IN `Direccion` VARCHAR(100), IN `Ciudad` VARCHAR(100))  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_agregar_empleado` (IN `Cedula` VARCHAR(20), IN `Nombre` VARCHAR(100), IN `Apellido` VARCHAR(100), IN `Cargo` VARCHAR(100), IN `Correo` VARCHAR(100), IN `Telefono` VARCHAR(100), IN `Direccion` VARCHAR(100), IN `Ciudad` VARCHAR(100))  NO SQL
 BEGIN
 SET @Cedula=Cedula;
 SET @Nombre=Nombre;
@@ -141,8 +149,10 @@ SET @Correo=Correo;
 SET @Telefono=Telefono;
 SET @Direccion=Direccion;
 SET @Ciudad=Ciudad;
-INSERT INTO tblEmpleado(id, Cedula, Nombre, Apellido, Cargo, Correo, Telefono, Direccion, Ciudad) VALUES(null,@Cedula, @Nombre, @Apellido, @Cargo, @Correo, @Telefono, @Direccion, @Ciudad);
+INSERT INTO tblEmpleado(Cedula, `Nombre(s)`, `Apellido(s)`, Cargo, `Correo Electronico`, Telefono, Direccion, Ciudad) VALUES(@Cedula, @Nombre, @Apellido, @Cargo, @Correo, @Telefono, @Direccion, @Ciudad);
 END$$
+-- CALL sp_agregar_empleado ('71.000.000', 'Nombre Empleado', 'Apellido Empleado', 'Cargo Empleado', 'Correo Empleado', 'Telefono Empleado', 'Direccion Empleado', 'Ciudad') $$
+
 
 DROP PROCEDURE IF EXISTS `sp_agregar_equipo`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_agregar_equipo` (IN `in_nombre` VARCHAR(50), IN `in_descripcion` TEXT, IN `in_activo` TINYINT(1), IN `in_imagenPath` VARCHAR(255), IN `in_codigo` VARCHAR(50), IN `in_peso` DOUBLE, IN `in_consumoWatts` DOUBLE, IN `in_dimensionAlto` DOUBLE, IN `in_dimensionAncho` DOUBLE, IN `in_dimensionProfundidad` DOUBLE, IN `in_serial` VARCHAR(255), IN `in_garantia` VARCHAR(255), IN `in_manuales` VARCHAR(255), IN `in_proteccion` VARCHAR(255), IN `in_categoriaId` INT(11), IN `in_marcaId` INT(11))  NO SQL
