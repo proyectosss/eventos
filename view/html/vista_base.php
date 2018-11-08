@@ -16,7 +16,7 @@ class vista_base {
                 </div>
             </div>
             <div class = "modal-header">
-                <center><h4><?php echo $entidad ?>s</h4></center>
+                <center><h4><?php echo ucfirst($entidad) ?>s</h4></center>
             </div>
             <div class = "padding">
                 <row>
