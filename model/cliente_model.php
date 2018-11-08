@@ -20,7 +20,7 @@ class cliente_model {
 
     public function get($inicio=0,$cuantos=10) {
         $queryString = "CALL sp_consultar_" . self::$nombreEntidad . "s($inicio,$cuantos)";
-        echo $queryString;
+        //echo $queryString;
         $query = $this->DB->query($queryString);
         while ($fila = $query->fetch_assoc()) {
             $this->clientes[] = $fila;

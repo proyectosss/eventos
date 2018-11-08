@@ -338,7 +338,7 @@ DROP PROCEDURE IF EXISTS `sp_consultar_empleados`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_consultar_empleados` (IN `in_fila_inicio` INT(11), IN `in_cuantas_filas` INT(11))  NO SQL
 BEGIN
 SELECT
-`id`,`Cedula`,`Nombre`,`Apellido`,`Cargo`,`Correo`,`Telefono`,`Direccion`,`Ciudad` FROM tblEmpleado LIMIT in_fila_inicio,in_cuantas_filas;
+`id`,`Cedula`,`Nombre(s)`,`Apellido(s)`,`Cargo`,`Correo Electronico`,`Telefono`,`Direccion`,`Ciudad` FROM tblEmpleado LIMIT in_fila_inicio,in_cuantas_filas;
 END$$
 
 DROP PROCEDURE IF EXISTS `sp_consultar_equipo`$$
@@ -475,7 +475,7 @@ WHERE var_email_use = vemail;
 END$$
 
 DELIMITER ;
-
+/*
 DROP TABLE IF EXISTS tblEquipoxevento;
 CREATE TABLE tblEquipoxevento (
   equipoId int(11) NOT NULL,
@@ -549,3 +549,4 @@ ALTER TABLE tbleventoxcliente
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+*/
