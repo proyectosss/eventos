@@ -6,7 +6,7 @@ class vista_base {
         ?>
         <div> <!-- class="container-fluid contenido"> -->
             <!-- div para abrir el modal -->
-            <div id="equipoAgregaModal" class="modal fade" role="dialog"> <!--class="container">-->
+            <div id= "<?php echo $entidad ?>AgregaModal" class="modal fade" role="dialog"> <!--class="container">-->
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div id="contenedorModal">

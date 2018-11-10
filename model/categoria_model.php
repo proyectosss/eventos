@@ -21,8 +21,10 @@ class categoria_model {
     public function get($inicio=0,$cuantos=10) {
         $queryString = "CALL sp_consultar_" . self::$nombreEntidad . "s($inicio,$cuantos)";
         $query = $this->DB->query($queryString);
+        if($query){
         while ($fila = $query->fetch_assoc()) {
             $this->categorias[] = $fila;
+        }
         }
         return $this->categorias;
     }
@@ -30,8 +32,10 @@ class categoria_model {
     public function getId($id) {
         $queryString = "CALL sp_consultar_" . self::$nombreEntidad . "($id)";
         $query = $this->DB->query($queryString);
+        if($query){
         if ($fila = $query->fetch_assoc()) {
             return $fila;
+        }
         }
         return NULL;
     }
@@ -40,8 +44,10 @@ class categoria_model {
         $queryString = "CALL sp_agregar_" . self::$nombreEntidad . "("
                 . "  '$nombre', '$responsable', '$descripcion''$imagenPath')";
         $query = $this->DB->query($queryString);
+        if($query){
         if ($fila = $query->fetch_assoc()) {
             return $fila['id'];
+        }
         }
         return NULL;
     }
@@ -52,8 +58,10 @@ class categoria_model {
         . "  '$nombre', '$responsable', '$descripcion''$imagenPath')";
 //        return mysqli_query($this->DB, $query);// or die('error \n' . mysqli_error($this->DB));
         $query = $this->DB->query($queryString);
+        if($query){
         if ($fila = $query->fetch_assoc()) {
             return $fila['conteo'];
+        }
         }
         return NULL;
     }
@@ -62,8 +70,10 @@ class categoria_model {
     {
         $queryString = "CALL sp_eliminar_" . self::$nombreEntidad . "($id)";
         $query = $this->DB->query($queryString);
+        if($query){
         if ($fila = $query->fetch_assoc()) {
             return $fila['conteo'];
+        }
         }
         return NULL;
     }

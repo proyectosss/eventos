@@ -22,8 +22,10 @@ class empleado_model {
         $queryString = "CALL sp_consultar_" . self::$nombreEntidad . "s($inicio,$cuantos)";
         //echo $queryString;
         $query = $this->DB->query($queryString);
+        if($query){
         while ($fila = $query->fetch_assoc()) {
             $this->empleados[] = $fila;
+        }
         }
         return $this->empleados;
     }
@@ -31,18 +33,22 @@ class empleado_model {
     public function getId($id) {
         $queryString = "CALL sp_consultar_" . self::$nombreEntidad . "($id)";
         $query = $this->DB->query($queryString);
+        if($query){
         if ($fila = $query->fetch_assoc()) {
             return $fila;
+        }
         }
         return NULL;
     }
 
     public function agrega($Cedula, $Nombre, $Apellido, $Cargo, $Correo, $Telefono, $Direccion, $Ciudad) {
         $queryString = "CALL sp_agregar_" . self::$nombreEntidad . "("
-                . " $Cedula '$Nombre', '$Apellido', '$Cargo', '$Correo', $Telefono, '$Direccion', '$Ciudad')";
+                . " '$Cedula', '$Nombre', '$Apellido', '$Cargo', '$Correo', $Telefono, '$Direccion', '$Ciudad')";
         $query = $this->DB->query($queryString);
+        if($query){
         if ($fila = $query->fetch_assoc()) {
             return $fila['id'];
+        }
         }
         return NULL;
     }
@@ -53,8 +59,10 @@ class empleado_model {
         . " $Cedula '$Nombre', '$Apellido', '$Cargo', '$Correo', $Telefono, '$Direccion', '$Ciudad')";
 //        return mysqli_query($this->DB, $query);// or die('error \n' . mysqli_error($this->DB));
         $query = $this->DB->query($queryString);
+        if($query){
         if ($fila = $query->fetch_assoc()) {
             return $fila['conteo'];
+        }
         }
         return NULL;
     }
@@ -63,8 +71,10 @@ class empleado_model {
     {
         $queryString = "CALL sp_eliminar_" . self::$nombreEntidad . "($id)";
         $query = $this->DB->query($queryString);
+        if($query){
         if ($fila = $query->fetch_assoc()) {
             return $fila['conteo'];
+        }
         }
         return NULL;
     }

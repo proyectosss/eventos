@@ -21,8 +21,10 @@ class marca_model {
     public function get($inicio=0,$cuantos=10) {
         $queryString = "CALL sp_consultar_" . self::$nombreEntidad . "s($inicio,$cuantos)";
         $query = $this->DB->query($queryString);
+        if($query){
         while ($fila = $query->fetch_assoc()) {
             $this->marcas[] = $fila;
+        }
         }
         return $this->marcas;
     }
@@ -30,36 +32,36 @@ class marca_model {
     public function getId($id) {
         $queryString = "CALL sp_consultar_" . self::$nombreEntidad . "($id)";
         $query = $this->DB->query($queryString);
+        if($query){
         if ($fila = $query->fetch_assoc()) {
             return $fila;
+        }
         }
         return NULL;
     }
 
-    public function agrega($nombre, $descripcion, $activo, $imagenPath, $codigo, $peso, $consumoWatts, $dimensionAlto, $dimensionAncho, $dimensionProfundidad, $serial, $garantia, $manuales, $proteccion, $categoriaId, $marcaId) {
+    public function agrega($nombre, $descripcion) {
         $queryString = "CALL sp_agregar_" . self::$nombreEntidad . "("
-                . "  '$nombre', '$descripcion', $activo, '$imagenPath', '$codigo', $peso"
-                . ", $consumoWatts, $dimensionAlto, $dimensionAncho, $dimensionProfundidad"
-                . ", '$serial', '$garantia', '$manuales', '$proteccion', $categoriaId"
-                . ", $marcaId)";
+                . "  '$nombre', '$descripcion')";
         $query = $this->DB->query($queryString);
+        if($query){
         if ($fila = $query->fetch_assoc()) {
             return $fila['id'];
+        }
         }
         return NULL;
     }
   
-    public function actualiza($id, $nombre, $descripcion, $activo, $imagenPath, $codigo, $peso, $consumoWatts, $dimensionAlto, $dimensionAncho, $dimensionProfundidad, $serial, $garantia, $manuales, $proteccion, $categoriaId, $marcaId)
+    public function actualiza($id, $nombre, $descripcion)
     {
         $queryString = "CALL sp_actualizar_" . self::$nombreEntidad . "("
-                . "  $id, '$nombre', '$descripcion', $activo, '$imagenPath', '$codigo', $peso"
-                . ", $consumoWatts, $dimensionAlto, $dimensionAncho, $dimensionProfundidad"
-                . ", '$serial', '$garantia', '$manuales', '$proteccion', $categoriaId"
-                . ", $marcaId)";
+                . "  $id, '$nombre', '$descripcion')";
 //        return mysqli_query($this->DB, $query);// or die('error \n' . mysqli_error($this->DB));
         $query = $this->DB->query($queryString);
+        if($query){
         if ($fila = $query->fetch_assoc()) {
             return $fila['conteo'];
+        }
         }
         return NULL;
     }
@@ -68,8 +70,10 @@ class marca_model {
     {
         $queryString = "CALL sp_eliminar_" . self::$nombreEntidad . "($id)";
         $query = $this->DB->query($queryString);
+        if($query){
         if ($fila = $query->fetch_assoc()) {
             return $fila['conteo'];
+        }
         }
         return NULL;
     }

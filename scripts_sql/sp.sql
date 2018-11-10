@@ -116,6 +116,7 @@ SET @nombre=nombre;
 SET @responsable=responsable;
 SET @descripcion=descripcion;
 INSERT INTO tblCategoria(id,nombre,responsable,descripcion) VALUES (null,@nombre,@responsable,@descripcion);
+SELECT LAST_INSERT_ID() AS id;
 END$$
 
 alter table tblCliente modify Nombre varchar(20) $$
@@ -134,6 +135,7 @@ SET @Correo = Correo;
 SET @Telefono = Telefono;
 SET @identificacion = identificacion;
 INSERT INTO tblCliente (Nombre, Apellido, Direccion, Correo, Telefono, identificacion) VALUES(@Nombre, @Apellido, @Direccion, @Correo, @Telefono, @identificacion);
+SELECT LAST_INSERT_ID() AS id;
 END$$
 -- CALL sp_agregar_cliente('Nombre Cliente', 'Apellido Cliente', 'Direccion Cliente', 'correo@servidor.com','6669999','71000000') $$
 
@@ -150,6 +152,7 @@ SET @Telefono=Telefono;
 SET @Direccion=Direccion;
 SET @Ciudad=Ciudad;
 INSERT INTO tblEmpleado(Cedula, `Nombre(s)`, `Apellido(s)`, Cargo, `Correo Electronico`, Telefono, Direccion, Ciudad) VALUES(@Cedula, @Nombre, @Apellido, @Cargo, @Correo, @Telefono, @Direccion, @Ciudad);
+SELECT LAST_INSERT_ID() AS id;
 END$$
 -- CALL sp_agregar_empleado ('71.000.000', 'Nombre Empleado', 'Apellido Empleado', 'Cargo Empleado', 'Correo Empleado', 'Telefono Empleado', 'Direccion Empleado', 'Ciudad') $$
 

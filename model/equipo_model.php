@@ -22,8 +22,10 @@ class equipo_model {
         $queryString = "CALL sp_consultar_" . self::$nombreEntidad . "s($inicio,$cuantos)";
         //echo $queryString;
         $query = $this->DB->query($queryString);
+        if($query){
         while ($fila = $query->fetch_assoc()) {
             $this->equipos[] = $fila;
+        }
         }
         return $this->equipos;
     }
@@ -31,8 +33,10 @@ class equipo_model {
     public function getId($id) {
         $queryString = "CALL sp_consultar_" . self::$nombreEntidad . "($id)";
         $query = $this->DB->query($queryString);
+        if($query){
         if ($fila = $query->fetch_assoc()) {
             return $fila;
+        }
         }
         return NULL;
     }
@@ -44,8 +48,10 @@ class equipo_model {
                 . ", '$serial', '$garantia', '$manuales', '$proteccion', $categoriaId"
                 . ", $marcaId)";
         $query = $this->DB->query($queryString);
+        if($query){
         if ($fila = $query->fetch_assoc()) {
             return $fila['id'];
+        }
         }
         return NULL;
     }
@@ -59,8 +65,10 @@ class equipo_model {
                 . ", $marcaId)";
 //        return mysqli_query($this->DB, $query);// or die('error \n' . mysqli_error($this->DB));
         $query = $this->DB->query($queryString);
+        if($query){
         if ($fila = $query->fetch_assoc()) {
             return $fila['conteo'];
+        }
         }
         return NULL;
     }
@@ -69,8 +77,10 @@ class equipo_model {
     {
         $queryString = "CALL sp_eliminar_" . self::$nombreEntidad . "($id)";
         $query = $this->DB->query($queryString);
+        if($query){
         if ($fila = $query->fetch_assoc()) {
             return $fila['conteo'];
+        }
         }
         return NULL;
     }
