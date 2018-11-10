@@ -12,6 +12,7 @@ SET @descripcion=descripcion;
 SET @imagenPath=imagenPath;
 SET @Id=Id;
 UPDATE tblCategoria SET nombre=@nombre, responsable=@responsable, descripcion=@descripcion, imagenPath=@imagenPath, Id=@Id WHERE id=@Id;
+SELECT ROW_COUNT() AS conteo;
 END$$
 
 DROP PROCEDURE IF EXISTS `sp_actualizar_cliente`$$
@@ -26,6 +27,7 @@ SET @Cedula=Cedula;
 SET @Id=Id;
 UPDATE tblCliente set Nombre=@Nombre, Apellido=@Apellido, Direccion=@Direccion, Correo=@Correo, Telefono=@Telefono, Id=@Id
 WHERE id=@Id;
+SELECT ROW_COUNT() AS conteo;
 END$$
 
 DROP PROCEDURE IF EXISTS `sp_actualizar_empleado`$$
@@ -41,6 +43,7 @@ SET @Direccion=Direccion;
 SET @Ciudad=Ciudad;
 UPDATE tblEmpleado set Nombre=@Nombre, Apellido=@Apellido, Cargo=@Cargo, Correo=@Correo, Telefono=@Telefono, Direccion=@Direccion, Ciudad=@Ciudad
 WHERE id=@Cedula;
+SELECT ROW_COUNT() AS conteo;
 END$$
 
 DROP PROCEDURE IF EXISTS `sp_actualizar_equipo`$$
@@ -97,6 +100,7 @@ SET @Transportador=Transportador;
 SET @HoraAproximadaCargue=HoraAproximadaCargue;
 SET @HoraAproximadaDescargue=HoraAproximadaDescargue;
 UPDATE tblEvento set Encargado=@Encargado, Lugar=@Lugar, Fecha=@Fecha, Transportado=@Transportador, HoraAproximadaCargue=@HoraAproximadaCargue, HoraAproximadaDescargue=@HoraAproximadaDescargue WHERE id=@Evento;
+SELECT ROW_COUNT() AS conteo;
 END$$
 
 DROP PROCEDURE IF EXISTS `sp_actualizar_marca`$$
@@ -107,6 +111,7 @@ SET @descripcion=descripcion;
 SET @imagenPath=imagenPath;
 SET @Id=Id;
 UPDATE tblMarca set nombre=@nombre, descripcion=@descripcion, imagenPath=imagenPath, Id=@Id WHERE id=@Id;
+SELECT ROW_COUNT() AS conteo;
 END$$
 
 DROP PROCEDURE IF EXISTS `sp_agregar_categoria`$$
@@ -288,6 +293,7 @@ SET @Transprotador = Transprotador;
 SET @HoraAproximadaCargue = HoraAproximadaCargue;
 SET @HoraAproximadaDescargue = HoraAproximadaDescargue;
 INSERT INTO tblEvento(id, Evento, Encargado, Lugar, Fecha, Transprotador, HoraAproximadaCargue, HoraAproximadaDescargue) VALUES (null, @Evento, @Encargado, @Lugar, @Fecha, @Transprotador, @HoraAproximadaCargue, @HoraAproximadaDescargue);
+SELECT LAST_INSERT_ID() AS id;
 END$$
 
 DROP PROCEDURE IF EXISTS `sp_agregar_marca`$$
@@ -433,28 +439,50 @@ END$$
 DROP PROCEDURE IF EXISTS `sp_eliminar_categoria`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_eliminar_categoria` (IN `Id` INT(11))  NO SQL
 BEGIN
-DELETE FROM tblCategoria WHERE id;
+set @id = id;
+DELETE FROM tblCategoria WHERE id = @id;
+SELECT ROW_COUNT() AS conteo;
 END$$
 
 DROP PROCEDURE IF EXISTS `sp_eliminar_cliente`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_eliminar_cliente` (IN `id` INT(11))  NO SQL
-DELETE FROM tblCliente WHERE id$$
+BEGIN
+SET @id=id;
+DELETE FROM tblCliente WHERE id = @id;
+SELECT ROW_COUNT() AS conteo;
+END $$
 
 DROP PROCEDURE IF EXISTS `sp_eliminar_empleado`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_eliminar_empleado` (IN `id` INT(11))  NO SQL
-DELETE FROM tblEmpleado WHERE id$$
+BEGIN
+SET @id=id;
+DELETE FROM tblEmpleado WHERE id = @id;
+SELECT ROW_COUNT() AS conteo;
+END $$
 
 DROP PROCEDURE IF EXISTS `sp_eliminar_equipo`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_eliminar_equipo` (IN `id` INT(11))  NO SQL
-DELETE FROM tblEquipo WHERE id$$
+BEGIN
+SET @id=id;
+DELETE FROM tblEquipo WHERE id = @id;
+SELECT ROW_COUNT() AS conteo;
+END $$
 
 DROP PROCEDURE IF EXISTS `sp_eliminar_evento`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_eliminar_evento` (IN `id` INT(11))  NO SQL
-DELETE FROM tblEvento WHERE id$$
+BEGIN
+SET @id=id;
+DELETE FROM tblEvento WHERE id = @id;
+SELECT ROW_COUNT() AS conteo;
+END $$
 
 DROP PROCEDURE IF EXISTS `sp_eliminar_marca`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_eliminar_marca` (IN `id` INT(11))  NO SQL
-DELETE FROM tblMarca WHERE id$$
+BEGIN
+SET @id=id;
+DELETE FROM tblMarca WHERE id = @id;
+SELECT ROW_COUNT() AS conteo;
+END $$
 
 DROP PROCEDURE IF EXISTS `sp_igreso_usuario`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_igreso_usuario` (IN `documento` INT, IN `nombre` VARCHAR(900), IN `apellido` VARCHAR(900), IN `telefono` INT, IN `celular` BIGINT, IN `email` VARCHAR(900), IN `passwordu` VARCHAR(900), IN `estado` VARCHAR(200), IN `fecha` DATETIME, IN `role` VARCHAR(900))  NO SQL
@@ -488,78 +516,3 @@ WHERE var_email_use = vemail;
 END$$
 
 DELIMITER ;
-/*
-DROP TABLE IF EXISTS tblEquipoxevento;
-CREATE TABLE tblEquipoxevento (
-  equipoId int(11) NOT NULL,
-  eventoId int(11) NOT NULL,
-  creadoPor char(32) DEFAULT NULL,
-  creadoEn datetime DEFAULT NULL,
-  actualizadoPor char(32) DEFAULT NULL,
-  actualizadoEn datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-DROP TABLE IF EXISTS tblEvento;
-CREATE TABLE tblEvento (
-  id int(11) NOT NULL,
-  Evento varchar(11) NOT NULL,
-  Encargado varchar(11) NOT NULL,
-  Lugar varchar(11) NOT NULL,
-  Fecha datetime NOT NULL,
-  Transprotador varchar(11) NOT NULL,
-  HoraAproximadaCargue time NOT NULL,
-  HoraAproximadaDescargue time NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-DROP TABLE IF EXISTS tblventoxcliente;
-CREATE TABLE tbleventoxcliente (
-  id int(11) NOT NULL,
-  eventoId int(11) NOT NULL,
-  clienteId int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-DROP TABLE IF EXISTS tblhistoricoequipoxevento;
-CREATE TABLE tblhistoricoequipoxevento (
-  equipoId int(11) NOT NULL,
-  eventoId int(11) NOT NULL,
-  creadoPor char(32) DEFAULT NULL,
-  creadoEn datetime DEFAULT NULL,
-  actualizadoPor char(32) DEFAULT NULL,
-  actualizadoEn datetime DEFAULT NULL,
-  eliminadoPor char(32) DEFAULT NULL,
-  eliminadoEn datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-
-ALTER TABLE tblequipoxevento
-  ADD KEY FK_tblEquipoXEvento_equipoId (equipoId),
-  ADD KEY FK_tblEquipoXEvento_eventoId (eventoId);
-
-ALTER TABLE tblevento
-  ADD PRIMARY KEY (id);
-
-ALTER TABLE tbleventoxcliente
-  ADD PRIMARY KEY (id),
-  ADD KEY FK_tblEventoXCliente_eventoId (eventoId),
-  ADD KEY FK_tblEventoXCliente_clienteId (clienteId);
-
-
-ALTER TABLE tblevento
-  MODIFY id int(11) NOT NULL AUTO_INCREMENT;
-
-ALTER TABLE tbleventoxcliente
-  MODIFY id int(11) NOT NULL AUTO_INCREMENT;
-
-
-ALTER TABLE tblequipoxevento
-  ADD CONSTRAINT FK_tblEquipoXEvento_equipoId FOREIGN KEY (equipoId) REFERENCES tblequipo (id),
-  ADD CONSTRAINT FK_tblEquipoXEvento_eventoId FOREIGN KEY (eventoId) REFERENCES tblevento (id);
-
-ALTER TABLE tbleventoxcliente
-  ADD CONSTRAINT FK_tblEventoXCliente_clienteId FOREIGN KEY (clienteId) REFERENCES tblcliente (id),
-  ADD CONSTRAINT FK_tblEventoXCliente_eventoId FOREIGN KEY (eventoId) REFERENCES tblevento (id);
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-*/

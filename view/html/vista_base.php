@@ -35,7 +35,7 @@ class vista_base {
                 </row>
             </div>
             <div class="table-responsive padding" >
-                <table class="table">
+                <table class="table" id="datatable">
                     <thead class="heade-table">
                         <?php
                         foreach ($titulos as $titulo):
