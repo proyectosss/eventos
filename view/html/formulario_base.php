@@ -8,7 +8,7 @@ function __construct($item, $entidad, $columnas, $titulos, $tipos) {
 ?>
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal">&times;</button>
-    <h4 class="modal-title">Agregar Equipo</h4>
+    <h4 class="modal-title">Agregar <?php echo $entidad?></h4>
 </div>
 <div class="modal-body">
 
