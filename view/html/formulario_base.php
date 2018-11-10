@@ -16,7 +16,7 @@ function __construct($item, $entidad, $columnas, $titulos, $tipos) {
     <form action="index.php?c=<?php echo $entidad?>&a=agrega" id="formAgrega" method="post">
         <input name="c" value="<?php echo $entidad?>" type="hidden"/>
         <input name="a" value="agrega" type="hidden"/>
-        <input name="id" value="<?php echo $item['id'] ?>" type="hidden"/>
+        <input name="id" value="<?php if($item!=null){ echo $item['id'];}?>" type="hidden"/>
 
         
         

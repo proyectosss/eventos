@@ -46,7 +46,7 @@ class controller_base{
         echo json_encode($arr);
     }
     function form_agregar() {
-
+        
         $id = $_POST["id"];
         if ($id > 0) {
             $item = $this->modelo->getId($_POST["id"]);

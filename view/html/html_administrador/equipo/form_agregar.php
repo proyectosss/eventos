@@ -16,5 +16,11 @@ $tipos = ['S', 'S', 'S', 'SI_NO', 'IMG', 'S',
 
 
 
-$form_agregar = new formulario_base($item, $entidad, $columnas, $titulos, $tipos);
-?>
+    if(isset($item)){
+        $form_agregar = new formulario_base($item, $entidad, $columnas, $titulos, $tipos);
+        }
+        else{
+         
+        $form_agregar = new formulario_base(null, $entidad, $columnas, $titulos, $tipos);   
+        }
+        ?>

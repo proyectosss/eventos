@@ -437,49 +437,49 @@ BEGIN
 END$$
 
 DROP PROCEDURE IF EXISTS `sp_eliminar_categoria`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_eliminar_categoria` (IN `Id` INT(11))  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_eliminar_categoria` (IN `in_id` INT(11))  NO SQL
 BEGIN
-set @id = id;
+set @id = in_id;
 DELETE FROM tblCategoria WHERE id = @id;
 SELECT ROW_COUNT() AS conteo;
 END$$
 
 DROP PROCEDURE IF EXISTS `sp_eliminar_cliente`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_eliminar_cliente` (IN `id` INT(11))  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_eliminar_cliente` (IN `in_id` INT(11))  NO SQL
 BEGIN
-SET @id=id;
+SET @id=in_id;
 DELETE FROM tblCliente WHERE id = @id;
 SELECT ROW_COUNT() AS conteo;
 END $$
 
 DROP PROCEDURE IF EXISTS `sp_eliminar_empleado`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_eliminar_empleado` (IN `id` INT(11))  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_eliminar_empleado` (IN `in_id` INT(11))  NO SQL
 BEGIN
-SET @id=id;
+SET @id=in_id;
 DELETE FROM tblEmpleado WHERE id = @id;
 SELECT ROW_COUNT() AS conteo;
 END $$
 
 DROP PROCEDURE IF EXISTS `sp_eliminar_equipo`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_eliminar_equipo` (IN `id` INT(11))  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_eliminar_equipo` (IN `in_id` INT(11))  NO SQL
 BEGIN
-SET @id=id;
+SET @id=in_id;
 DELETE FROM tblEquipo WHERE id = @id;
 SELECT ROW_COUNT() AS conteo;
 END $$
 
 DROP PROCEDURE IF EXISTS `sp_eliminar_evento`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_eliminar_evento` (IN `id` INT(11))  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_eliminar_evento` (IN `in_id` INT(11))  NO SQL
 BEGIN
-SET @id=id;
+SET @id=in_id;
 DELETE FROM tblEvento WHERE id = @id;
 SELECT ROW_COUNT() AS conteo;
 END $$
 
 DROP PROCEDURE IF EXISTS `sp_eliminar_marca`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_eliminar_marca` (IN `id` INT(11))  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_eliminar_marca` (IN `in_id` INT(11))  NO SQL
 BEGIN
-SET @id=id;
+SET @id=in_id;
 DELETE FROM tblMarca WHERE id = @id;
 SELECT ROW_COUNT() AS conteo;
 END $$
