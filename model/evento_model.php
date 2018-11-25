@@ -40,9 +40,9 @@ class Evento_model {
         return NULL;
     }
 
-    public function agrega($Evento, $Encargado, $Lugar, $Fecha, $Transportador, $HoraAproximadaCargue, $HoraAproximadaDescargue) {
+    public function agrega($evento, $encargado, $lugar, $fecha, $transportador, $horaAproximadaCargue, $horaAproximadaDescargue) {
         $queryString = "CALL sp_agregar_" . self::$nombreEntidad . "("
-                . "  '$Evento', '$Encargado', '$Lugar', '$Fecha', '$transportador', '$HoraAproximadaCargue', '$HoraAproximadaDescargue')";
+                . "  '$evento', '$encargado', '$lugar', '$fecha', '$transportador', '$horaAproximadaCargue', '$horaAproximadaDescargue')";
         $query = $this->DB->query($queryString);
         if($query){
         if ($fila = $query->fetch_assoc()) {
@@ -52,10 +52,10 @@ class Evento_model {
         return NULL;
     }
 
-    public function actualiza($id,$Evento, $Encargado, $Lugar, $Fecha, $transportador, $HoraAproximadaCargue, $HoraAproximadaDescargue)
+    public function actualiza($id,$evento, $encargado, $lugar, $fecha, $transportador, $horaAproximadaCargue, $horaAproximadaDescargue)
     {
         $queryString = "CALL sp_actualizar_" . self::$nombreEntidad . "("
-        . "  '$Eventos', '$Encargado', '$Lugar', '$Fecha', '$Transportador', '$HoraAproximadaCargue', '$HoraAproximadaDescargue')";
+        . "  '$eventos', '$encargado', '$lugar', '$fecha', '$transportador', '$horaAproximadaCargue', '$horaAproximadaDescargue')";
 //        return mysqli_query($this->DB, $query);// or die('error \n' . mysqli_error($this->DB));
         $query = $this->DB->query($queryString);
         if($query){

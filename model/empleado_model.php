@@ -41,9 +41,9 @@ class empleado_model {
         return NULL;
     }
 
-    public function agrega($Cedula, $Nombre, $Apellido, $Cargo, $Correo, $Telefono, $Direccion, $Ciudad) {
+    public function agrega($cedula, $nombre, $apellido, $cargo, $correo, $telefono, $direccion, $ciudad) {
         $queryString = "CALL sp_agregar_" . self::$nombreEntidad . "("
-                . " '$Cedula', '$Nombre', '$Apellido', '$Cargo', '$Correo', $Telefono, '$Direccion', '$Ciudad')";
+                . " '$cedula', '$nombre', '$apellido', '$cargo', '$correo', $telefono, '$direccion', '$ciudad')";
         $query = $this->DB->query($queryString);
         if($query){
         if ($fila = $query->fetch_assoc()) {
@@ -53,10 +53,10 @@ class empleado_model {
         return NULL;
     }
   
-    public function actualiza($id,$Cedula, $Nombre, $Apellido, $Cargo, $Correo, $Telefono, $Direccion, $Ciudad)
+    public function actualiza($id,$cedula, $nombre, $apellido, $cargo, $correo, $telefono, $direccion, $Ccudad)
     {
         $queryString = "CALL sp_actualizar_" . self::$nombreEntidad . "("
-        . " $Cedula '$Nombre', '$Apellido', '$Cargo', '$Correo', $Telefono, '$Direccion', '$Ciudad')";
+        . " $cedula '$nombre', '$apellido', '$cargo', '$correo', $telefono, '$direccion', '$ciudad')";
 //        return mysqli_query($this->DB, $query);// or die('error \n' . mysqli_error($this->DB));
         $query = $this->DB->query($queryString);
         if($query){

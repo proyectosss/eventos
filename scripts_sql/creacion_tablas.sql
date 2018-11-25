@@ -46,11 +46,11 @@ DROP TABLE IF EXISTS `tblCliente`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `tblCliente` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `Nombre` int(15) NOT NULL,
-  `Apellido` int(30) NOT NULL,
-  `Direccion` int(30) NOT NULL,
-  `Correo` int(40) NOT NULL,
-  `Telefono` int(20) NOT NULL,
+  `nombre` int(15) NOT NULL,
+  `apellido` int(30) NOT NULL,
+  `direccion` int(30) NOT NULL,
+  `correo` int(40) NOT NULL,
+  `telefono` int(20) NOT NULL,
   `identificacion` varchar(15) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `identificacion` (`identificacion`)
@@ -80,12 +80,12 @@ CREATE TABLE `tblControlAsistencia` (
 -- Table structure for table `tblCursos`
 --
 
-DROP TABLE IF EXISTS `tblCursos`;
+DROP TABLE IF EXISTS `tblCurso`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `tblCursos` (
+CREATE TABLE `tblCurso` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `Curso` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `curso` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -94,18 +94,18 @@ CREATE TABLE `tblCursos` (
 -- Table structure for table `tblCursosXEmpleado`
 --
 
-DROP TABLE IF EXISTS `tblCursosXEmpleado`;
+DROP TABLE IF EXISTS `tblCursoXEmpleado`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `tblCursosXEmpleado` (
+CREATE TABLE `tblCursoXEmpleado` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `empleadoId` int(11) DEFAULT NULL,
   `cursoId` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `FK_tblCursosXEmpleado_eventoId` (`cursoId`),
-  KEY `FK_tblCursosXEmpleado_empleadoId` (`empleadoId`),
-  CONSTRAINT `FK_tblCursosXEmpleado_empleadoId` FOREIGN KEY (`empleadoId`) REFERENCES `tblEmpleado` (`id`),
-  CONSTRAINT `FK_tblCursosXEmpleado_eventoId` FOREIGN KEY (`cursoId`) REFERENCES `tblCursos` (`id`)
+  KEY `FK_tblCursoXEmpleado_eventoId` (`cursoId`),
+  KEY `FK_tblCursoXEmpleado_empleadoId` (`empleadoId`),
+  CONSTRAINT `FK_tblCursoXEmpleado_empleadoId` FOREIGN KEY (`empleadoId`) REFERENCES `tblEmpleado` (`id`),
+  CONSTRAINT `FK_tblCursoXEmpleado_eventoId` FOREIGN KEY (`cursoId`) REFERENCES `tblCursos` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -118,14 +118,14 @@ DROP TABLE IF EXISTS `tblEmpleado`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `tblEmpleado` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `Cedula` int(100) NOT NULL,
-  `Nombre(s)` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `Apellido(s)` varchar(100) CHARACTER SET utf8 COLLATE utf8_vietnamese_ci DEFAULT NULL,
-  `Cargo` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `Correo Electronico` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `Telefono` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `Direccion` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `Ciudad` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `cedula` int(100) NOT NULL,
+  `nombre` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `apellido(s)` varchar(100) CHARACTER SET utf8 COLLATE utf8_vietnamese_ci DEFAULT NULL,
+  `cargo` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `correoElectronico` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `telefono` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `direccion` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `ciudad` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -268,13 +268,13 @@ DROP TABLE IF EXISTS `tblEvento`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `tblEvento` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `Evento` int(11) NOT NULL,
-  `Encargado` int(11) NOT NULL,
-  `Lugar` int(11) NOT NULL,
-  `Fecha` int(11) NOT NULL,
-  `Transprotador` int(11) NOT NULL,
-  `HoraAproximadaCargue` int(11) NOT NULL,
-  `HoraAproximadaDescargue` int(11) NOT NULL,
+  `evento` char(50) NOT NULL,
+  `encargado` char(50) NOT NULL,
+  `lugar` char(50) NOT NULL,
+  `fecha` date NOT NULL,
+  `transportador` varchar(50) NOT NULL,
+  `horaAproximadaCargue` timestamp NOT NULL,
+  `horaAproximadaDescargue` timestamp NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -321,13 +321,13 @@ CREATE TABLE `tblHistoricoEquipoXEvento` (
 -- Table structure for table `tblHorasTrabajadas`
 --
 
-DROP TABLE IF EXISTS `tblHorasTrabajadas`;
+DROP TABLE IF EXISTS `tblHoraTrabajada`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `tblHorasTrabajadas` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `TotalHoras` int(100) NOT NULL,
-  `PagoTotal` int(100) NOT NULL,
+  `totalHora` int(100) NOT NULL,
+  `pagoTotal` int(100) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -385,7 +385,7 @@ DROP TABLE IF EXISTS `tblNormatividadLaboral`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `tblNormatividadLaboral` (
   `Id` int(100) NOT NULL,
-  `Norma` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `norma` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -400,7 +400,7 @@ DROP TABLE IF EXISTS `tblTarea`;
 CREATE TABLE `tblTarea` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `descripcion` varchar(100) NOT NULL,
-  `observaciones` varchar(800) DEFAULT NULL,
+  `observacion` varchar(800) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;

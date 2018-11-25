@@ -11,8 +11,8 @@ class vista extends vista_base {
 }
 
 $entidad = 'cliente';
-$columnas = ['id', 'Nombre', 'Apellido', 'Direccion', 'Correo',
-    'Telefono', 'identificacion'];
+$columnas = ['id', 'nombre', 'apellido', 'direccion', 'correo',
+    'telefono', 'identificacion'];
 $titulos = ['Id', 'Nombre', 'Apellido', 'Direccion', 'Correo', 'Telefono',
     'Identificacion','Opciones'];
 $tipos = ['S', 'S', 'S', 'S', 'S', 'S','S'];

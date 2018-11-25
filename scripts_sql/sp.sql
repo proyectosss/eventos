@@ -16,33 +16,32 @@ SELECT ROW_COUNT() AS conteo;
 END$$
 
 DROP PROCEDURE IF EXISTS `sp_actualizar_cliente`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_actualizar_cliente` (IN `Nombre` VARCHAR(15), IN `Apellido` VARCHAR(30), IN `Direccion` VARCHAR(30), IN `Correo` VARCHAR(40), IN `Telefono` INT(20), IN `Id` INT)  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_actualizar_cliente` (IN `nombre` VARCHAR(15), IN `apellido` VARCHAR(30), IN `direccion` VARCHAR(30), IN `correo` VARCHAR(40), IN `telefono` INT(20), IN `Id` INT)  NO SQL
 BEGIN
-SET @Nombre=Nombre;
-SET @Apellido=Apellido;
-SET @Direccion=Direccion;
-SET @Correo=Correo;
-SET @Telefono=Telefono;
-SET @Cedula=Cedula;
+SET @nombre=nombre;
+SET @apellido=apellido;
+SET @direccion=direccion;
+SET @correo=correo;
+SET @telefono=telefono;
 SET @Id=Id;
-UPDATE tblCliente set Nombre=@Nombre, Apellido=@Apellido, Direccion=@Direccion, Correo=@Correo, Telefono=@Telefono, Id=@Id
+UPDATE tblCliente set nombre=@nombre, apellido=@apellido, direccion=@direccion, correo=@correo, telefono=@telefono, Id=@Id
 WHERE id=@Id;
 SELECT ROW_COUNT() AS conteo;
 END$$
 
 DROP PROCEDURE IF EXISTS `sp_actualizar_empleado`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_actualizar_empleado` (IN `Cedula` INT(100), IN `Nombre` VARCHAR(100), IN `Apellido` VARCHAR(100), IN `Cargo` VARCHAR(100), IN `Correo` VARCHAR(100), IN `Telefono` VARCHAR(100), IN `Direccion` VARCHAR(100), IN `Ciudad` VARCHAR(100))  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_actualizar_empleado` (IN `cedula` INT(100), IN `nombre` VARCHAR(100), IN `apellido` VARCHAR(100), IN `cargo` VARCHAR(100), IN `correo` VARCHAR(100), IN `telefono` VARCHAR(100), IN `direccion` VARCHAR(100), IN `ciudad` VARCHAR(100))  NO SQL
 BEGIN
-SET @Cedula=Cedula;
-SET @Nombre=Nombre;
-SET @Apellido=Apellido;
-SET @Cargo=Cargo;
-SET @Correo=Correo;
-SET @Telefono=Telefono;
-SET @Direccion=Direccion;
-SET @Ciudad=Ciudad;
-UPDATE tblEmpleado set Nombre=@Nombre, Apellido=@Apellido, Cargo=@Cargo, Correo=@Correo, Telefono=@Telefono, Direccion=@Direccion, Ciudad=@Ciudad
-WHERE id=@Cedula;
+SET @cedula=cedula;
+SET @nombre=nombre;
+SET @apellido=apellido;
+SET @cargo=cargo;
+SET @correo=correo;
+SET @telefono=telefono;
+SET @direccion=direccion;
+SET @ciudad=ciudad;
+UPDATE tblEmpleado set nombre=@nombre, apellido=@apellido, cargo=@cargo, correo=@correo, telefono=@telefono, direccion=@direccion, ciudad=@ciudad
+WHERE id=@cedula;
 SELECT ROW_COUNT() AS conteo;
 END$$
 
@@ -90,16 +89,16 @@ BEGIN
 END$$
 
 DROP PROCEDURE IF EXISTS `sp_actualizar_evento`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_actualizar_evento` (IN `Evento` VARCHAR(11), IN `Encargado` VARCHAR(11), IN `Lugar` VARCHAR(11), IN `Fecha` DATETIME, IN `Transportador` VARCHAR(11), IN `HoraAproximadaCargue` TIME, IN `HoraAproximadaDescargue` TIME)  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_actualizar_evento` (IN `evento` VARCHAR(11), IN `encargado` VARCHAR(11), IN `lugar` VARCHAR(11), IN `fecha` DATETIME, IN `transportador` VARCHAR(11), IN `horaAproximadaCargue` TIME, IN `horaAproximadaDescargue` TIME)  NO SQL
 BEGIN
-SET @Evento=Evento;
-SET @Encargado=Encargado;
-SET @Lugar=Lugar;
-SET @Fecha=Fecha;
-SET @Transportador=Transportador;
-SET @HoraAproximadaCargue=HoraAproximadaCargue;
-SET @HoraAproximadaDescargue=HoraAproximadaDescargue;
-UPDATE tblEvento set Encargado=@Encargado, Lugar=@Lugar, Fecha=@Fecha, Transportado=@Transportador, HoraAproximadaCargue=@HoraAproximadaCargue, HoraAproximadaDescargue=@HoraAproximadaDescargue WHERE id=@Evento;
+SET @evento=evento;
+SET @encargado=encargado;
+SET @lugar=lugar;
+SET @fecha=fecha;
+SET @transportador=transportador;
+SET @horaAproximadaCargue=horaAproximadaCargue;
+SET @horaAproximadaDescargue=horaAproximadaDescargue;
+UPDATE tblEvento set encargado=@encargado, lugar=@lugar, fecha=@fecha, transportador=@transportador, horaAproximadaCargue=@horaAproximadaCargue, horaAproximadaDescargue=@horaAproximadaDescargue WHERE id=@Evento;
 SELECT ROW_COUNT() AS conteo;
 END$$
 
@@ -124,39 +123,39 @@ INSERT INTO tblCategoria(id,nombre,responsable,descripcion) VALUES (null,@nombre
 SELECT LAST_INSERT_ID() AS id;
 END$$
 
-alter table tblCliente modify Nombre varchar(20) $$
-alter table tblCliente modify Apellido varchar(20) $$
-alter table tblCliente modify Direccion varchar(30) $$
-alter table tblCliente modify Correo varchar(40) $$
-alter table tblCliente modify Telefono varchar(20) $$
+alter table tblCliente modify nombre varchar(20) $$
+alter table tblCliente modify apellido varchar(20) $$
+alter table tblCliente modify direccion varchar(30) $$
+alter table tblCliente modify correo varchar(40) $$
+alter table tblCliente modify telefono varchar(20) $$
 
 DROP PROCEDURE IF EXISTS `sp_agregar_cliente`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_agregar_cliente` (IN `Nombre` VARCHAR(15), IN `Apellido` VARCHAR(30), IN `Direccion` VARCHAR(30), IN `Correo` VARCHAR(40), IN `Telefono` INT(20), IN `identificacion` VARCHAR(15))  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_agregar_cliente` (IN `nombre` VARCHAR(15), IN `apellido` VARCHAR(30), IN `direccion` VARCHAR(30), IN `correo` VARCHAR(40), IN `telefono` INT(20), IN `identificacion` VARCHAR(15))  NO SQL
 BEGIN
-SET @Nombre= Nombre;
-SET @Apellido = Apellido;
-SET @Direccion = Direccion;
-SET @Correo = Correo;
-SET @Telefono = Telefono;
+SET @nombre= nombre;
+SET @apellido = apellido;
+SET @direccion = direccion;
+SET @correo = correo;
+SET @telefono = telefono;
 SET @identificacion = identificacion;
-INSERT INTO tblCliente (Nombre, Apellido, Direccion, Correo, Telefono, identificacion) VALUES(@Nombre, @Apellido, @Direccion, @Correo, @Telefono, @identificacion);
+INSERT INTO tblCliente (nombre, apellido, direccion, correo, telefono, identificacion) VALUES(@nombre, @apellido, @direccion, @correo, @telefono, @identificacion);
 SELECT LAST_INSERT_ID() AS id;
 END$$
 -- CALL sp_agregar_cliente('Nombre Cliente', 'Apellido Cliente', 'Direccion Cliente', 'correo@servidor.com','6669999','71000000') $$
 
 alter table tblEmpleado modify Cedula varchar(20) $$
 DROP PROCEDURE IF EXISTS `sp_agregar_empleado`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_agregar_empleado` (IN `Cedula` VARCHAR(20), IN `Nombre` VARCHAR(100), IN `Apellido` VARCHAR(100), IN `Cargo` VARCHAR(100), IN `Correo` VARCHAR(100), IN `Telefono` VARCHAR(100), IN `Direccion` VARCHAR(100), IN `Ciudad` VARCHAR(100))  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_agregar_empleado` (IN `cedula` VARCHAR(20), IN `nombre` VARCHAR(100), IN `apellido` VARCHAR(100), IN `cargo` VARCHAR(100), IN `correo` VARCHAR(100), IN `telefono` VARCHAR(100), IN `direccion` VARCHAR(100), IN `ciudad` VARCHAR(100))  NO SQL
 BEGIN
-SET @Cedula=Cedula;
-SET @Nombre=Nombre;
-SET @Apellido=Apellido;
-SET @Cargo=Cargo;
-SET @Correo=Correo;
-SET @Telefono=Telefono;
-SET @Direccion=Direccion;
-SET @Ciudad=Ciudad;
-INSERT INTO tblEmpleado(Cedula, `Nombre(s)`, `Apellido(s)`, Cargo, `Correo Electronico`, Telefono, Direccion, Ciudad) VALUES(@Cedula, @Nombre, @Apellido, @Cargo, @Correo, @Telefono, @Direccion, @Ciudad);
+SET @cedula=cedula;
+SET @nombre=nombre;
+SET @apellido=apellido;
+SET @cargo=cargo;
+SET @correo=correo;
+SET @telefono=telefono;
+SET @direccion=direccion;
+SET @ciudad=ciudad;
+INSERT INTO tblEmpleado(Cedula, `nombre`, `apellido`, Cargo, `correoElectronico`, telefono, direccion, ciudad) VALUES(@cedula, @nombre, @apellido, @cargo, @correo, @telefono, @direccion, @ciudad);
 SELECT LAST_INSERT_ID() AS id;
 END$$
 -- CALL sp_agregar_empleado ('71.000.000', 'Nombre Empleado', 'Apellido Empleado', 'Cargo Empleado', 'Correo Empleado', 'Telefono Empleado', 'Direccion Empleado', 'Ciudad') $$
@@ -283,16 +282,16 @@ BEGIN
     END$$
 
 DROP PROCEDURE IF EXISTS `sp_agregar_evento`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_agregar_evento` (IN `Evento` VARCHAR(11), IN `Encargado` VARCHAR(11), IN `Lugar` VARCHAR(11), IN `Fecha` DATETIME, IN `Transprotador` VARCHAR(11), IN `HoraAproximadaCargue` TIME, IN `HoraAproximadaDescargue` TIME)  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_agregar_evento` (IN `evento` VARCHAR(11), IN `encargado` VARCHAR(11), IN `lugar` VARCHAR(11), IN `fecha` DATETIME, IN `transportador` VARCHAR(11), IN `horaAproximadaCargue` TIME, IN `horaAproximadaDescargue` TIME)  NO SQL
 BEGIN
-SET @Evento = Evento;
-SET @Encargado = Encargado;
-SET @Lugar = Lugar;
-SET @Fecha = Fecha;
-SET @Transprotador = Transprotador;
-SET @HoraAproximadaCargue = HoraAproximadaCargue;
-SET @HoraAproximadaDescargue = HoraAproximadaDescargue;
-INSERT INTO tblEvento(id, Evento, Encargado, Lugar, Fecha, Transprotador, HoraAproximadaCargue, HoraAproximadaDescargue) VALUES (null, @Evento, @Encargado, @Lugar, @Fecha, @Transprotador, @HoraAproximadaCargue, @HoraAproximadaDescargue);
+SET @evento = evento;
+SET @encargado = encargado;
+SET @lugar = lugar;
+SET @fecha = fecha;
+SET @transprotador = transprotador;
+SET @horaAproximadaCargue = horaAproximadaCargue;
+SET @horaAproximadaDescargue = horaAproximadaDescargue;
+INSERT INTO tblEvento(id, evento, encargado, lugar, fecha, transportador, horaAproximadaCargue, horaAproximadaDescargue) VALUES (null, @evento, @encargado, @lugar, @fecha, @transportador, @horaAproximadaCargue, @horaAproximadaDescargue);
 SELECT LAST_INSERT_ID() AS id;
 END$$
 
@@ -329,7 +328,7 @@ DROP PROCEDURE IF EXISTS `sp_consultar_cliente`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_consultar_cliente` (IN `Id` INT(11))  NO SQL
 BEGIN
 SET @Id=Id;
-SELECT Nombre as Nombre, Apellido as Apellido, Direccion as Direccion, Correo as Correo, Telefono as Telefono, Identificacion as Identificacion FROM tblCliente WHERE id=@Id;
+SELECT nombre as nombre, apellido as apellido, direccion as direccion, correo as correo, telefono as telefono, identificacion as identificacion FROM tblCliente WHERE id=@Id;
 END$$
 
 DROP PROCEDURE IF EXISTS `sp_consultar_clientes`$$
@@ -337,11 +336,11 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_consultar_clientes` (IN `in_fila
 BEGIN
 SELECT
 `id`,
-`Nombre`,
-`Apellido`,
-`Direccion`,
-`Correo`,
-`Telefono`,
+`nombre`,
+`apellido`,
+`direccion`,
+`correo`,
+`telefono`,
 `identificacion`
 FROM tblCliente LIMIT in_fila_inicio,in_cuantas_filas;
 END$$
@@ -350,14 +349,14 @@ DROP PROCEDURE IF EXISTS `sp_consultar_empleado`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_consultar_empleado` (IN `Id` INT(11))  NO SQL
 BEGIN
 SET Id=@Id;
-SELECT Cedula as Cedula, Nombre as Nombre, Apellido as Apellido, Cargo as Cargo, Correo as Correo, Telefono as Telefono, Direccion as Direccion, Ciudad as Ciudad FROM tblEmpleado WHERE id=@Id;
+SELECT cedula as cedula, nombre as nombre, apellido as apellido, cargo as cargo, correo as correo, telefono as telefono, direccion as direccion, ciudad as ciudad FROM tblEmpleado WHERE id=@Id;
 END$$
 
 DROP PROCEDURE IF EXISTS `sp_consultar_empleados`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_consultar_empleados` (IN `in_fila_inicio` INT(11), IN `in_cuantas_filas` INT(11))  NO SQL
 BEGIN
 SELECT
-`id`,`Cedula`,`Nombre(s)`,`Apellido(s)`,`Cargo`,`Correo Electronico`,`Telefono`,`Direccion`,`Ciudad` FROM tblEmpleado LIMIT in_fila_inicio,in_cuantas_filas;
+`id`,`cedula`,`nombre`,`apellido`,`cargo`,`correoElectronico`,`telefono`,`direccion`,`ciudad` FROM tblEmpleado LIMIT in_fila_inicio,in_cuantas_filas;
 END$$
 
 DROP PROCEDURE IF EXISTS `sp_consultar_equipo`$$
@@ -415,7 +414,7 @@ DROP PROCEDURE IF EXISTS `sp_consultar_evento`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_consultar_evento` (IN `Id` INT(11))  NO SQL
 BEGIN 
 SET @Id=Id;
-SELECT Evento as Evento, Encargado as Encargado, Lugar as Lugar, Fecha as Fecha, Transportador as Transportador, HoraAproximadaCarga as HoraAproximadaCarga, HoraAproximadaDescargue as HoraAproximadaDescargue FROM tblEvento WHERE id=@Id;
+SELECT evento as evento, encargado as encargado, lugar as lugar, fecha as fecha, transportador as transportador, horaAproximadaCarga as horaAproximadaCarga, horaAproximadaDescargue as horaAproximadaDescargue FROM tblEvento WHERE id=@Id;
 END$$
 
 DROP PROCEDURE IF EXISTS `sp_consultar_marca`$$

@@ -3,11 +3,11 @@
 include_once 'view/html/formulario_base.php';
 
 $entidad = 'empleado';
-$columnas = ['id', 'Cedula', 'Nombre', 'Apellido', 'Cargo', 'Correo',
-    'Telefono', 'Telefono', 'Direccion', 'Ciudad'];
+$columnas = ['id', 'cedula', 'nombre', 'apellido', 'cargo', 'correo',
+    'telefono', 'direccion', 'ciudad'];
 $titulos = ['Id', 'Cedula', 'Nombre', 'Apellido', 'Cargo', 'Correo',
 'Telefono', 'Direccion', 'Ciudad', 'Opciones'];
-$tipos = ['S', 'S', 'S', 'S', 'S', 'S','S', 'S', 'S', 'S'];
+$tipos = ['S', 'S', 'S', 'S', 'S', 'S','S', 'S', 'S'];
 
 
 
