@@ -21,9 +21,9 @@ class evento_controller extends controller_base {
         if (isset($_POST['id'])) {
             $id = $_POST['id'];
             if ($id > 0) {
-                $res = $this->modelo->actualiza($id, $_POST["Evento"], $_POST["Encargado"], $_POST["Lugar"], $_POST["Fecha"], $_POST["Transportador"], $_POST["HoraAproximadaCargue"], $_POST["HoraAproximadaDescargue"]);
+                $res = $this->modelo->actualiza($id, $_POST["evento"], $_POST["encargado"], $_POST["lugar"], $_POST["fecha"], $_POST["transportador"], $_POST["horaAproximadaCargue"], $_POST["horaAproximadaDescargue"]);
             } else {
-                $res = $this->modelo->agrega($_POST["Evento"], $_POST["Encargado"], $_POST["Lugar"], $_POST["Fecha"], $_POST["Transportador"], $_POST["HoraAproximadaCargue"], $_POST["HoraAproximadaDescargue"]);
+                $res = $this->modelo->agrega($_POST["evento"], $_POST["encargado"], $_POST["lugar"], $_POST["fecha"], $_POST["transportador"], $_POST["horaAproximadaCargue"], $_POST["horaAproximadaDescargue"]);
             }
         }
         $arr = array('r' => $res);

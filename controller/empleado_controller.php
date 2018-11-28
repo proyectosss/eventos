@@ -22,9 +22,9 @@ class empleado_controller extends controller_base {
         if (isset($_POST['id'])) {
             $id = $_POST['id'];
             if ($id > 0) {
-                $res = $this->modelo->actualiza($id, $_POST["Cedula"], $_POST["Nombre"], $_POST["Apellido"], $_POST["Cargo"], $_POST["Correo"], $_POST["Telefono"], $_POST["Direccion"], $_POST["Ciudad"]);
+                $res = $this->modelo->actualiza($id, $_POST["cedula"], $_POST["nombre"], $_POST["apellido"], $_POST["cargo"], $_POST["correoElectronico"], $_POST["telefono"], $_POST["direccion"], $_POST["ciudad"]);
             } else {
-                $res = $this->modelo->agrega($_POST["Cedula"], $_POST["Nombre"], $_POST["Apellido"], $_POST["Cargo"], $_POST["Correo"], $_POST["Telefono"], $_POST["Direccion"], $_POST["Ciudad"]);
+                $res = $this->modelo->agrega($_POST["cedula"], $_POST["nombre"], $_POST["apellido"], $_POST["cargo"], $_POST["correo"], $_POST["telefono"], $_POST["direccion"], $_POST["ciudad"]);
             }
         }
         $arr = array('r' => $res);

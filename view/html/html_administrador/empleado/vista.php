@@ -11,11 +11,11 @@ class vista extends vista_base {
 }
 
 $entidad = 'empleado';
-$columnas = ['id', 'Cedula', 'Nombre', 'Apellido', 'Cargo', 'Correo',
-    'Telefono', 'Telefono', 'Direccion', 'Ciudad'];
+$columnas = ['id', 'cedula', 'nombre', 'apellido', 'cargo', 'correoElectronico',
+    'telefono', 'direccion', 'ciudad'];
 $titulos = ['Id', 'Cedula', 'Nombre', 'Apellido', 'Cargo', 'Correo',
 'Telefono', 'Direccion', 'Ciudad', 'Opciones'];
-$tipos = ['S', 'S', 'S', 'S', 'S', 'S','S', 'S', 'S', 'S'];
+$tipos = ['S', 'S', 'S', 'S', 'S', 'S','S', 'S', 'S',];
 
 $vista = new vista($data, $entidad, $columnas, $titulos, $tipos, $inicio, $cuantos);
 

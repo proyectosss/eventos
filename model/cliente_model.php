@@ -40,9 +40,9 @@ class cliente_model {
         return NULL;
     }
 
-    public function agrega($Nombre, $Apellido, $Direccion, $Correo, $Telefono, $identificacion) {
+    public function agrega($nombre, $apellido, $direccion, $correo, $telefono, $identificacion) {
         $queryString = "CALL sp_agregar_" . self::$nombreEntidad . "("
-                . "  '$Nombre', '$Apellido', '$Direccion', '$Correo', $Telefono, '$identificacion')";
+                . "  '$nombre', '$apellido', '$direccion', '$correo', $telefono, '$identificacion')";
         $query = $this->DB->query($queryString);
         if($query){
             if ($fila = $query->fetch_assoc()) {
@@ -52,9 +52,9 @@ class cliente_model {
         return NULL;
     }
 
-    public function actualiza($id, $Nombre, $Apellido, $Direccion, $Correo, $Telefono, $identificacion) {
+    public function actualiza($id, $nombre, $apellido, $direccion, $correo, $telefono, $identificacion) {
         $queryString = "CALL sp_actualizar_" . self::$nombreEntidad . "("
-                . "  '$Nombre', '$Apellido', '$Correo', $Telefono, '$identificacion')";
+                . "  '$nombre', '$apellido', '$correo', $telefono, '$identificacion')";
 //        return mysqli_query($this->DB, $query);// or die('error \n' . mysqli_error($this->DB));
         $query = $this->DB->query($queryString);
         if($query){
