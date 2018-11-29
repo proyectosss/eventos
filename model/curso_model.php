@@ -5,17 +5,17 @@
  *
  * @author juan
  */
-class marca_model {
+class curso_model {
 
 //put your code here
     private $DB;
-    private $marca;
+    private $curso;
     
-    private static $nombreEntidad = "marca";
+    private static $nombreEntidad = "curso";
 
     public function __construct() {
         $this->DB = conexion::getConnection();
-        $this->marcas = array();
+        $this->cursos = array();
     }
 
     public function get($inicio=0,$cuantos=10) {
@@ -23,10 +23,10 @@ class marca_model {
         $query = $this->DB->query($queryString);
         if($query){
         while ($fila = $query->fetch_assoc()) {
-            $this->marcas[] = $fila;
+            $this->cursos[] = $fila;
         }
         }
-        return $this->marcas;
+        return $this->cursos;
     }
 
     public function getId($id) {
@@ -40,9 +40,9 @@ class marca_model {
         return NULL;
     }
 
-    public function agrega($nombre, $descripcion) {
+    public function agrega($curso) {
         $queryString = "CALL sp_agregar_" . self::$nombreEntidad . "("
-                . "  '$nombre', '$descripcion')";
+                . "  '$curso')";
         $query = $this->DB->query($queryString);
         if($query){
         if ($fila = $query->fetch_assoc()) {
@@ -52,10 +52,10 @@ class marca_model {
         return NULL;
     }
   
-    public function actualiza($id, $nombre, $descripcion)
+    public function actualiza($id,$curso)
     {
         $queryString = "CALL sp_actualizar_" . self::$nombreEntidad . "("
-                . "   '$nombre', '$descripcion')";
+        . "  '$curso')";
 //        return mysqli_query($this->DB, $query);// or die('error \n' . mysqli_error($this->DB));
         $query = $this->DB->query($queryString);
         if($query){
