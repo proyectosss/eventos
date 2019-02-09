@@ -1,7 +1,7 @@
 <footer>
-	<div class="footer background-color">
+	<div class="footer background-color == #F19A19">
 		<br>
-		<p class="footer-personalizado">© Copyright 2017 <a href="http://www.pascualbravo.edu.co/" target="_blank" class="footer-personalizado"></a> ®.<br></p>
+		<p class="footer-personalizado">© Copyright 2018 <a href="http://www.pascualbravo.edu.co/" target="_blank" class="footer-personalizado"></a> ®.<br></p>
 	</div>
 </footer>
 <!--Scripts-->

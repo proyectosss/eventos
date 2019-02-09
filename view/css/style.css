@@ -1,16 +1,16 @@
 .text-color{
-  color: #19395b !important;
+  color: #F19A19 !important;
 }
 .background-color{
-  background: #19395b !important;
+  background: #F19A19 !important;
 }
 .font{
   font-family: 'Roboto', sans-serif;
   font-weight: normal;
 }
 .header {
-  border-color: #19395b;
-  color: #19395b;
+  border-color: #F19A19;
+  color: #F19A19;
   padding-top:2em;
 
 }
@@ -110,7 +110,7 @@ input[type="file"] {
 
 /*//////////////////////////////////////////////////////////////////////////*/
 #label-p{
-  color: #19395b !important;
+  color: #F19A19 !important;
   font-family: 'Roboto', sans-serif;
   font-weight: normal;
   font-size: 15px;
@@ -179,7 +179,6 @@ input[type="file"] {
   margin: auto;
   display: block;
   width: 98%;
-
 }*/
 
 /*.modal-content {
@@ -250,7 +249,7 @@ body
 /*/////////////////////////////////////////////////////////////////////////////*/
 /*/////////////////////////////////////tabla//////////////////////////////////*/
 .heade-table{
-  background: #19395b;
+  background: #F19A19;
 }
 th{
   font-size: 15px;

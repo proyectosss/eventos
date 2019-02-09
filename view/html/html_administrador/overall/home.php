@@ -1,7 +1,7 @@
 <div style="background-color: " class="container-fluid contenido">
     <div class="row">
         <div id="divDelControlador">
-            <h1>Bienvenido administrador de sistema!!</h1><br/>        
+            <h1>Bienvenido administrador de Sistema!</h1><br/>        
             <?php
 echo nl2br("nombre: " . $_SESSION["name"] . "\n");
 echo nl2br("rol: " . $_SESSION["rol"] . "\n");
