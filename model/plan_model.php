@@ -1,20 +1,14 @@
 <?php
 
-/**
- * Description of equipo_model
- *
- * @author juan
- */
-class cliente_model {
+class plan_model {
 
-//put your code here
     private $DB;
-    private $cliente;
-    private static $nombreEntidad = "cliente";
+    private $plan;
+    private static $nombreEntidad = "plan";
 
     public function __construct() {
         $this->DB = conexion::getConnection();
-        $this->clientes = array();
+        $this->planes = array();
     }
 
     public function get($inicio = 0, $cuantos = 10) {
@@ -23,10 +17,10 @@ class cliente_model {
         $query = $this->DB->query($queryString);
         if($query){
         while ($fila = $query->fetch_assoc()) {
-            $this->clientes[] = $fila;
+            $this->planes[] = $fila;
         }
         }
-        return $this->clientes;
+        return $this->planes;
     }
 
     public function getId($id) {
@@ -40,9 +34,9 @@ class cliente_model {
         return NULL;
     }
 
-    public function agrega($nombre, $apellido, $direccion, $correo, $telefono, $identificacion) {
+    public function agrega($definicion, $naturaleza, $observacion) {
         $queryString = "CALL sp_agregar_" . self::$nombreEntidad . "("
-                . "  '$nombre', '$apellido', '$direccion', '$correo', $telefono, '$identificacion')";
+                . "  '$definicion', '$naturaleza', '$observacion')";
         $query = $this->DB->query($queryString);
         if($query){
             if ($fila = $query->fetch_assoc()) {
@@ -52,9 +46,9 @@ class cliente_model {
         return NULL;
     }
 
-    public function actualiza($id, $nombre, $apellido, $direccion, $correo, $telefono, $identificacion) {
+    public function actualiza($id, $definicion, $naturaleza, $observacion) {
         $queryString = "CALL sp_actualizar_" . self::$nombreEntidad . "("
-                . "  '$nombre', '$apellido', '$correo', $telefono, '$identificacion')";
+                . "  '$definicion', '$naturaleza', '$observacion')";
 //        return mysqli_query($this->DB, $query);// or die('error \n' . mysqli_error($this->DB));
         $query = $this->DB->query($queryString);
         if($query){

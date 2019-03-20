@@ -10,10 +10,9 @@ class vista extends vista_base {
 
 }
 
-$entidad = 'tarea';
-$columnas = ['id', 'descripcion', 'observacion'];
-$titulos = ['Id', 'Descripcion', 'Observacion','Funciones'];
-$tipos = ['S', 'S', 'S'];
-
+$entidad = 'plan';
+$columnas = ['id', 'definicion', 'observacion', 'naturaleza'];
+$titulos = ['Id', 'Definicion', 'Naturaleza', 'Observacion', '----', 'Opciones'];
+$tipos = ['S', 'S', 'S', 'S'];
 $vista = new vista($data, $entidad, $columnas, $titulos, $tipos, $inicio, $cuantos);
 

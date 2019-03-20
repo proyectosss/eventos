@@ -1,18 +1,12 @@
 <?php
 
-/**
- * Description of tblEquipo_controller
- *
- * @author juan
- */
-//require_once 'model/equipo_model.php';
 require_once 'controller_base.php';
-class marca_controller extends controller_base {
+class plan_controller extends controller_base {
 
     private $sesion;
     
     public function __construct() {
-        $this->entidad = 'marca';
+        $this->entidad = 'plan';
         parent::__construct($this->entidad);
     }
 
@@ -22,9 +16,9 @@ class marca_controller extends controller_base {
         if (isset($_POST['id'])) {
             $id = $_POST['id'];
             if ($id > 0) {
-                $res = $this->modelo->actualiza($id, $_POST["nombre"], $_POST["descripcion"]);
+                $res = $this->modelo->actualiza($id, $_POST["definicion"], $_POST["naturaleza"], $_POST["observacion"]);
             } else {
-                $res = $this->modelo->agrega($_POST["nombre"], $_POST["descripcion"]);
+                $res = $this->modelo->agrega($_POST["definicion"], $_POST["naturaleza"], $_POST["observacion"], $_POST["correo"], $_POST["telefono"], $_POST["identificacion"]);
             }
         }
         $arr = array('r' => $res);

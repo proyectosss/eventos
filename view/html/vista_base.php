@@ -69,6 +69,19 @@ class vista_base {
                                 //<td><center><?php echo ($item['activo'] == 1 ? 'SI' : 'NO'); ></center></td>
                             }
                             ?>
+                             <div>
+                                 <form action="" class="formulario">
+                                     <div class="radio">
+                                         <input type="radio" names="debe" id="debe">
+                                         <label for="debe">Debe</label>
+                                         <input type="radio" names="haber" id="haber">
+                                         <label for="haber">Habaer</label>
+
+                                     </div>
+
+                                 </form>
+                             </div>   
+
                         <td>
                             <div class="row">
                                 <button class = "btn btn-raised btn-primary btn-xs btne" data-title = "Edit"
@@ -77,7 +90,7 @@ class vista_base {
                                     <span class = "glyphicon glyphicon-pencil"></span>
                                 </button>
                                 <button class = "btn btn-raised btn-warning btn-xs btne" data-title = "ver detalle"
-                                        data-placement = "top" data-toggle = "tooltip" title = "Edit"
+                                        data-placement = "top" data-toggle = "tooltip" title = "Ver"
                                         onclick = "cargaYMuestraModal('<?php echo $entidad ?>', <?php echo $item['id']; ?>)">
                                     <span class = "glyphicon glyphicon-eye-open"></span>
                                 </button>
